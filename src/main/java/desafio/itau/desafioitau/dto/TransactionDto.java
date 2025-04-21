@@ -1,9 +1,9 @@
-package dto;
+package desafio.itau.desafioitau.dto;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 
 import java.time.OffsetDateTime;
 
@@ -25,7 +25,7 @@ public class TransactionDto {
     private Double valor;
 
     @NotNull(message = "Campo Data/Hora não pode ser nulo")
-    @FutureOrPresent(message = "Data não pode ser no passado")
+    @PastOrPresent(message = "Data não pode ser no futuro")
     private OffsetDateTime dataHora;
 
     /**

@@ -1,12 +1,12 @@
-package resources;
+package desafio.itau.desafioitau.resources;
 
-import dto.TransactionDto;
-import entities.Transaction;
+import desafio.itau.desafioitau.dto.TransactionDto;
+import desafio.itau.desafioitau.entities.Transaction;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import services.TransactionService;
+import desafio.itau.desafioitau.services.TransactionService;
 
 import java.time.OffsetDateTime;
 
@@ -21,8 +21,8 @@ import java.time.OffsetDateTime;
  * @since 04/2025
  */
 @RestController
-@RequestMapping("/transacao")
-public class TransactionController {
+@RequestMapping
+public class TransactionResource {
 
     private final TransactionService transactionService;
 
@@ -35,7 +35,7 @@ public class TransactionController {
      *
      * @param transactionService Serviço utilizado para manipulação das transações.
      */
-    public TransactionController(TransactionService transactionService) {
+    public TransactionResource(TransactionService transactionService) {
         this.transactionService = transactionService;
     }
 
@@ -51,7 +51,7 @@ public class TransactionController {
      * @param dto Objeto que contém os dados da transação a ser criada.
      * @return {@link ResponseEntity} com o status HTTP de sucesso ou erro.
      */
-    @PostMapping
+    @PostMapping(value = "/transacao")
     public ResponseEntity<Void> createTransaction(@Valid @RequestBody TransactionDto dto) {
         if (dto.getDataHora().isAfter(OffsetDateTime.now())) {
             return ResponseEntity.unprocessableEntity().build();
@@ -71,7 +71,7 @@ public class TransactionController {
      *
      * @return {@link ResponseEntity} com o status HTTP de sucesso.
      */
-    @DeleteMapping
+    @DeleteMapping(value = "/transacoes")
     public ResponseEntity<Void> deleteTransaction() {
         transactionService.clearTransactions();
         return ResponseEntity.ok().build();
