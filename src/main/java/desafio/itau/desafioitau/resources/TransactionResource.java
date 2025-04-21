@@ -21,7 +21,7 @@ import java.time.OffsetDateTime;
  * @since 04/2025
  */
 @RestController
-@RequestMapping
+@RequestMapping(value = "/transacao")
 public class TransactionResource {
 
     private final TransactionService transactionService;
@@ -51,7 +51,7 @@ public class TransactionResource {
      * @param dto Objeto que contém os dados da transação a ser criada.
      * @return {@link ResponseEntity} com o status HTTP de sucesso ou erro.
      */
-    @PostMapping(value = "/transacao")
+    @PostMapping
     public ResponseEntity<Void> createTransaction(@Valid @RequestBody TransactionDto dto) {
         if (dto.getDataHora().isAfter(OffsetDateTime.now())) {
             return ResponseEntity.unprocessableEntity().build();
@@ -71,7 +71,7 @@ public class TransactionResource {
      *
      * @return {@link ResponseEntity} com o status HTTP de sucesso.
      */
-    @DeleteMapping(value = "/transacoes")
+    @DeleteMapping
     public ResponseEntity<Void> deleteTransaction() {
         transactionService.clearTransactions();
         return ResponseEntity.ok().build();
