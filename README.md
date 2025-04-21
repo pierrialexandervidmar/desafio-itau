@@ -2,8 +2,6 @@
 
 Seja bem-vindo(a)! Este desafio propõe a criação de uma API REST focada tanto no desenvolvimento quanto na engenharia de software. Queremos avaliar sua capacidade de construir uma solução completa e bem estruturada.
 
-🎥 [Vídeo de apoio no YouTube](https://youtu.be/uke3i4uOejs)
-
 ---
 
 ## Índice
